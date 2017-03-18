@@ -52,6 +52,7 @@ namespace jpgRemover
             //var Output = "";
             var jpgCount = 0;
             var rawCount = 0;
+            long TotalJPGFileSizeToRemove = 0;
 
             //Clear values incase this is the second run through from changing RAW file type combo box.
             Output = "";
@@ -91,14 +92,16 @@ namespace jpgRemover
                 //AddToOutput("Processed file: " + System.IO.Path.GetFileName(fileName));
 
                 //TODO: Add up all the jpg file size bytes and display how much space will be saved.
-                long length = new System.IO.FileInfo(fileName).Length;
+                TotalJPGFileSizeToRemove += new System.IO.FileInfo(fileName).Length;
                 var Bytes = "";
             }
 
             //Set jpg to remove count for future use
             jpegsToRemoveCount = jpgsToRemove.Count();
 
-            AddToOutput("");
+            AddToOutput("Total Size in Bytes: " + TotalJPGFileSizeToRemove);
+            AddToOutput("Total Size in MBs: " + GetBytesToMBs(TotalJPGFileSizeToRemove), true);
+
             AddToOutput("Found " + jpgCount + " JPG Files.");
             AddToOutput("Found " + rawCount + " RAW " + RAWFile + " Files.");
 
@@ -148,6 +151,24 @@ namespace jpgRemover
                 Output += Environment.NewLine + Environment.NewLine;
 
             MainOutputTextBox.Text = Output;
+        }
+
+        private string GetBytesToMBs(long bytes)
+        {
+            string[] sizes = { "B", "KB", "MB", "GB", "TB" };
+
+            int order = 0;
+            while (bytes >= 1024 && order < sizes.Length - 1)
+            {
+                order++;
+                bytes = bytes / 1024;
+            }
+
+            // Adjust the format string to your preferences. For example "{0:0.#}{1}" would
+            // show a single decimal place, and no space.
+            string result = String.Format("{0:0.##} {1}", bytes, sizes[order]);
+
+            return result;
         }
 
         private void HelpAbout(object sender, RoutedEventArgs e)
