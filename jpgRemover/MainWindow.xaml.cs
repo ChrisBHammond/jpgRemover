@@ -91,6 +91,7 @@ namespace jpgRemover
                 //AddToOutput("Processed file: " + System.IO.Path.GetFileName(fileName));
 
                 //TODO: Add up all the jpg file size bytes and display how much space will be saved.
+                long length = new System.IO.FileInfo(fileName).Length;
                 var Bytes = "";
             }
 
