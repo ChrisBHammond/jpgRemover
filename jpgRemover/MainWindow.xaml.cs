@@ -86,8 +86,12 @@ namespace jpgRemover
                 //If there is a RAW File with the same file name as the JPG then its safee to remove the jpeg.
                 if (File.Exists(fileNameRAW))
                     jpgsToRemove.Add(fileName);
-              
-                AddToOutput("Processed file: " + System.IO.Path.GetFileName(fileName));
+
+                //Removed as the list of files found can be HUGE!
+                //AddToOutput("Processed file: " + System.IO.Path.GetFileName(fileName));
+
+                //TODO: Add up all the jpg file size bytes and display how much space will be saved.
+                var Bytes = "";
             }
 
             //Set jpg to remove count for future use
