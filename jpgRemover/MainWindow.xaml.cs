@@ -122,9 +122,16 @@ namespace jpgRemover
 
                 if (result == MessageBoxResult.Yes)
                 {
+                    //TODO: add check to see if there is any files to remove and if there isnt tell the user.
+
+                    //TODO: Move this logic to its own method?
                     foreach (var jpgFile in jpgsToRemove)
+                    {
+
+                        //TODO: Check on if the file is read only or protected?
                         File.Delete(jpgFile);
 
+                    }
                     AddToOutput("Removed " + jpegsToRemoveCount + " JPG files from the directory.", true);
                 }              
             }
