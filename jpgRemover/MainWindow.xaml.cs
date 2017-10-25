@@ -45,6 +45,8 @@ namespace jpgRemover
             InitializeSytem();         
         }
 
+        //TODO: Move Lots of this to PictureHelper Class then build and use the glass instead.
+        //TODO: Make it multiThreaded so the GUI dosent freeze and see about passing back updates.
         public void InitializeSytem()
         {
 
@@ -109,6 +111,7 @@ namespace jpgRemover
 
         }
 
+        //TODO: Move this to PictureHelper Class
         private void DeleteJPGs_Click(object sender, RoutedEventArgs e)
         {
             //Show Yes no Box
